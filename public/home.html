@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Home</title>
+</head>
+<body>
+    <form action="/carDetailsQuery" id="carDetailsForm" method="POST">
+        <h2>Enter car details</h2>
+
+        Brand: 
+        <input type="text" name="brad" id="txtBrand" />
+        Model: 
+        <input type="text" name="model" id="txtModel" />
+
+        <input type="submit" value="Submit" />
+    </form>
+
+    <script>
+        function getCookie(name) {
+            var value = "; " + document.cookie;
+            var parts = value.split("; " + name + "=");
+            if (parts.length == 2) return parts.pop().split(";").shift();
+        }
+        var token = getCookie('csrf-token');
+
+        var csrf_field = document.createElement("input");
+        csrf_field.setAttribute("type", "text");
+        csrf_field.setAttribute("name", "csrf_field");
+        csrf_field.setAttribute("id", "csrf_field");
+        csrf_field.setAttribute("value", token);
+        csrf_field.setAttribute("hidden", true);
+        document.getElementById("carDetailsForm").append(csrf_field);
+    </script>
+</body>
+</html>
